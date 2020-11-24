@@ -1,0 +1,101 @@
+
+<!doctype html>
+<html lang="ko">
+<head>
+	<meta charset="utf-8">
+	<title>%</title>
+	<style>
+		html,body{height: 100%;}
+		html{font-size: 10px;}
+		body{font-size: 1.5rem;}
+		*{margin: 0;padding: 0;}
+		div{text-align: left;}
+		span{display: block;font-size: 14px;}
+		.flex	{display:-webkit-box;display:-webkit-flex;display:flex;-webkit-box-sizing:border-box;box-sizing:border-box;text-align:center;-webkit-box-pack:center;-webkit-box-align:center;justify-content:center;-webkit-justify-content:center;align-items:center;-webkit-align-items:center;}
+		.flex	.item>div{margin: 5px 0;}
+		[data-mode="dark"] body{background-color: #25221c;color:#828282;}
+		[data-mode="dark"] input{color: rgba(255,255,255,.7);line-height: 2rem;padding: 5px;background-color: rgba(0,0,0,.5);border: 1px solid rgba(0,0,0,.5);}
+	</style>
+	<script>
+		/* Dakr mode */
+		(function($el){if($el!=undefined){let $btnDark=document.createElement("button");$btnDark.classList.add("btn_dark");$btnDark.innerHTML='Dark mode<div class="scene"><div class="sun"></div><div class="sun_bg"></div></div>';$el.appendChild($btnDark)}isDarkMode={init:function(){if(localStorage.HiveGuideDarkMode==undefined){if(matchMedia('(prefers-color-scheme: dark)').matches){setMode('dark')}else{setMode('light');setTimeout(function(){$el!=undefined&&document.querySelector(".btn_dark").classList.add("loading")},100);setTimeout(function(){$el!=undefined&&document.querySelector(".btn_dark").classList.remove("loading")},4500)}}else{let a=localStorage.HiveGuideDarkMode;"dark"==a?setMode("dark"):setMode("light")}},reload:function(){localStorage.removeItem("HiveGuideDarkMode");isDarkMode.init()}};isDarkMode.init();function setMode(a){localStorage.setItem('HiveGuideDarkMode',a);document.querySelector("html").setAttribute("data-mode",a);$el!=undefined&&document.querySelector(".btn_dark").classList.remove("loading")}if(window.matchMedia("(prefers-color-scheme: dark)").addEventListener==undefined){window.matchMedia('(prefers-color-scheme: dark)').addListener(function(){isDarkMode.reload()})}else{window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change",function(){isDarkMode.reload()})}$el!=undefined&&document.querySelector(".btn_dark").addEventListener("click",function(){let a=localStorage.HiveGuideDarkMode;"dark"==a?setMode("light"):setMode("dark")})})();
+	</script>
+</head>
+
+<body class="flex">
+<div class="item">
+	<div id="per">
+		<span>퍼센트 : v1 * v2 / 100 =</span>
+		<input type="text" class="per_1" pattern="0-9*" placeholder="value">
+		<input type="text" class="per_2" pattern="0-9*" placeholder="percent">
+		<p class="val"></p>
+		<p class="total"></p>
+	</div>
+	<div id="up">
+		<span>증감 : (1000 - 2000) / 2000 x 100 =</span>
+		<input type="text" class="per_1" pattern="0-9*" placeholder="value">
+		<input type="text" class="per_2" pattern="0-9*" placeholder="percent">
+		<p class="val"></p>
+		<p class="total"></p>
+	</div>
+	<div id="sum">
+		<span title="(보유단가(원) * 보유 수량(주)) + (추가매수단가(원)*추가매수수량(주)) / 보유수량(주) + 추가매수수량(주)">평단</span>
+		<input type="text" class="per_1" pattern="0-9*" placeholder="기존 보유단가"><br>
+		<input type="text" class="per_2" pattern="0-9*" placeholder="기존 보유수량"><br>
+		<input type="text" class="per_3" pattern="0-9*" placeholder="신규 매수단가"><br>
+		<input type="text" class="per_4" pattern="0-9*" placeholder="신규 매수수량">
+		<p class="val"></p>
+		<p class="total"></p>
+	</div>
+	<div id="sum2">
+		<span title="(보유단가(원) * 보유 수량(주)) + (추가매수단가(원)*추가매수수량(주)) / 보유수량(주) + 추가매수수량(주)">평단</span>
+		<input type="text" class="per_1" pattern="0-9*" placeholder="기존 보유단가"><br>
+		<input type="text" class="per_2" pattern="0-9*" placeholder="기존 보유수량"><br>
+		<input type="text" class="per_3" pattern="0-9*" placeholder="신규 매수단가"><br>
+		<input type="text" class="per_4" pattern="0-9*" placeholder="신규 매수수량">
+		<p class="val"></p>
+		<p class="total"></p>
+	</div>
+</div>
+
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script>
+	$(function(){
+
+		$("#per input").on("keyup",function(){
+			var v1=Number($("#per .per_1").val()),v2=Number($("#per .per_2").val()),
+				r=v1*v2/100,
+				t=Math.round(v1+r);
+			console.log(typeof r,typeof t)
+			$("#per .val").text('= '+r);
+			$("#per .total").text('+= '+t);
+		});
+		$("#up input").on("keyup",function(){
+			var v1=Number($("#up .per_1").val()),v2=Number($("#up .per_2").val()),
+				r=v1*v2/100,
+				t=Math.round(v1+r);
+			console.log(typeof r,typeof t)
+			$("#up .val").text('= '+r);
+			$("#up .total").text('+= '+t);
+		});
+		$("#sum input").on("keyup",function(){
+			var v1=Number($("#sum .per_1").val()),v2=Number($("#sum .per_2").val()),v3=Number($("#sum .per_3").val()),v4=Number($("#sum .per_4").val()),
+				r=v2 + v4;
+			t=Math.ceil(((v1 * v2) + (v3*v4))/r);
+			console.log( r, t)
+			$("#sum .val").text('총보유수량 : '+r);
+			$("#sum .total").text('평단 : '+t);
+		});
+
+		$("#sum2 input").on("keyup",function(){
+			var v1=Number($("#sum2 .per_1").val()),v2=Number($("#sum2 .per_2").val()),v3=Number($("#sum2 .per_3").val()),v4=Number($("#sum2 .per_4").val()),
+				r=v2 + v4;
+			t=Math.ceil(((v1 * v2) + (v3*v4))/r);
+			console.log( r, t)
+			$("#sum2 .val").text('총보유수량 : '+r);
+			$("#sum2 .total").text('평단 : '+t);
+		});
+	});
+</script>
+</body>
+</html>
