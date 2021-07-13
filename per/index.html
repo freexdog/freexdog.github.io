@@ -70,10 +70,9 @@
 	</div>
 </div>
 
-<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script src="./jquery-1.12.4.min.js"></script>
 <script>
 	$(function(){
-
 		$("#per input").on("keyup",function(){
 			var v1=Number($("#per .per_1").val()),v2=Number($("#per .per_2").val()),
 				r=v1*v2/100,
@@ -134,21 +133,22 @@
 		}
 
 		$("#sum3 input").on("keyup",function(){
-			$("#sum3 .mk_t").val($("#sum3 .mk_t").val().replace(/,/g, ""));
-			var $inp1=$("#sum3 .price_1"),
+			var $mk_t=$("#sum3 .mk_t"),
+				$inp1=$("#sum3 .price_1"),
 				$inp2=$("#sum3 .price_2"),
 				$inp3=$("#sum3 .price_3"),
 				$inp4=$("#sum3 .price_4"),
-				v1=Number($inp1.val($inp1.val().replace(/,/g, ""))),
-				v2=Number($inp2.val($inp2.val().replace(/,/g, ""))),
-				v3=Number($inp3.val($inp3.val().replace(/,/g, ""))),
-				v4=Number($inp4.val($inp4.val().replace(/,/g, ""))),
-				mk_t=Number($("#sum3 .mk_t").val())
-			v=v1 + v2 + v3 + v4;
-			s=v/Number($("#sum3 .per").val());
+				v1=Number($inp1.val().replace(/,/g, "")),
+				v2=Number($inp2.val().replace(/,/g, "")),
+				v3=Number($inp3.val().replace(/,/g, "")),
+				v4=Number($inp4.val().replace(/,/g, "")),
+				mk_t=Number($("#sum3 .mk_t").val()),
+			v=v1 + v2 + v3 + v4,
+			s=v/Number($("#sum3 .per").val()),
 			mk_s=Math.ceil(s*10000000000);
 			numberToKorean(mk_s);
-			mk_p=Math.ceil(mk_s/mk_t);
+			$mk_t.val($mk_t.val().replace(/,/g, ""));
+			var mk_p=Math.ceil(mk_s/mk_t);
 			$("#sum3 .mk_s").text('적정시총 : '+mk_s.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+' ('+numberToKorean(mk_s)+')');
 			$("#sum3 .mk_p").text('적정주가 : '+mk_p.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","));
 		});
