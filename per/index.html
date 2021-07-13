@@ -135,7 +135,14 @@
 
 		$("#sum3 input").on("keyup",function(){
 			$("#sum3 .mk_t").val($("#sum3 .mk_t").val().replace(/,/g, ""));
-			var v1=Number($("#sum3 .price_1").val()),v2=Number($("#sum3 .price_2").val()),v3=Number($("#sum3 .price_3").val()),v4=Number($("#sum3 .price_4").val()),
+			var $inp1=$("#sum3 .price_1"),
+				$inp2=$("#sum3 .price_2"),
+				$inp3=$("#sum3 .price_3"),
+				$inp4=$("#sum3 .price_4"),
+				v1=Number($inp1.val($inp1.val().replace(/,/g, ""))),
+				v2=Number($inp2.val($inp2.val().replace(/,/g, ""))),
+				v3=Number($inp3.val($inp3.val().replace(/,/g, ""))),
+				v4=Number($inp4.val($inp4.val().replace(/,/g, ""))),
 				mk_t=Number($("#sum3 .mk_t").val())
 			v=v1 + v2 + v3 + v4;
 			s=v/Number($("#sum3 .per").val());
