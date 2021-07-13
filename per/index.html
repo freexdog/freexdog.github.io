@@ -63,7 +63,7 @@
 		<input type="text" class="price_2" pattern="0-9*" placeholder="2분기 영익">+
 		<input type="text" class="price_3" pattern="0-9*" placeholder="3분기 영익">+
 		<input type="text" class="price_4" pattern="0-9*" placeholder="4분기 영익">/
-		<input type="text" class="per" pattern="0-9*" size="2" placeholder="퍼" value="10">=
+		<input type="text" class="per" pattern="0-9*" size="3" placeholder="퍼" value="10">=
 		<span class="mk_s"></span><br>
 		<input type="text" class="mk_t" pattern="0-9*" placeholder="상장주식수"><br>
 		<div class="mk_p"></div>
@@ -108,16 +108,42 @@
 			$("#sum2 .total").text('평단 : '+t);
 		});
 
+		function numberFormat(x) {
+			return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		}
+
+		function numberToKorean(number){
+			var inputNumber  = number < 0 ? false : number;
+			var unitWords    = ['', '만', '억', '조', '경'];
+			var splitUnit    = 10000;
+			var splitCount   = unitWords.length;
+			var resultArray  = [];
+			var resultString = '';
+			for (var i = 0; i < splitCount; i++){
+				var unitResult = (inputNumber % Math.pow(splitUnit, i + 1)) / Math.pow(splitUnit, i);
+				unitResult = Math.floor(unitResult);
+				if (unitResult > 0){
+					resultArray[i] = unitResult;
+				}
+			}
+			for (var i = 0; i < resultArray.length; i++){
+				if(!resultArray[i]) continue;
+				resultString = String(numberFormat(resultArray[i])) + unitWords[i] + resultString;
+			}
+			return resultString;
+		}
+
 		$("#sum3 input").on("keyup",function(){
+			$("#sum3 .mk_t").val($("#sum3 .mk_t").val().replace(/,/g, ""));
 			var v1=Number($("#sum3 .price_1").val()),v2=Number($("#sum3 .price_2").val()),v3=Number($("#sum3 .price_3").val()),v4=Number($("#sum3 .price_4").val()),
 				mk_t=Number($("#sum3 .mk_t").val())
 			v=v1 + v2 + v3 + v4;
 			s=v/Number($("#sum3 .per").val());
 			mk_s=Math.ceil(s*10000000000);
+			numberToKorean(mk_s);
 			mk_p=Math.ceil(mk_s/mk_t);
-			console.log( s, mk_s)
-			$("#sum3 .mk_s").text('적정시총 : '+mk_s);
-			$("#sum3 .mk_p").text('적정주가 : '+mk_p);
+			$("#sum3 .mk_s").text('적정시총 : '+mk_s.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+' ('+numberToKorean(mk_s)+')');
+			$("#sum3 .mk_p").text('적정주가 : '+mk_p.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","));
 		});
 	});
 </script>
