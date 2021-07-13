@@ -2,10 +2,11 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
+<meta name="viewport" content="width=450, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>%</title>
 <style>
 	html,body{height: 100%;}
-	html{font-size: 10px;}
+	html{font-size: 10px;padding: 50px 0;}
 	body{font-size: 1.5rem;}
 	*{margin: 0;padding: 0;}
 	div{text-align: left;}
@@ -14,6 +15,7 @@
 	.flex	.item>div{margin: 5px 0;}
 	[data-mode="dark"] body{background-color: #25221c;color:#828282;}
 	[data-mode="dark"] input{color: rgba(255,255,255,.7);line-height: 2rem;padding: 5px;background-color: rgba(0,0,0,.5);border: 1px solid rgba(0,0,0,.5);}
+	[class*='price']{width:60px;}
 </style>
 <script>
 	/* Dakr mode */
@@ -24,7 +26,7 @@
 <body class="flex">
 <div class="item">
 	<div id="per">
-		<span>퍼센트! : v1 * v2 / 100 =</span>
+		<span>퍼센트 : v1 * v2 / 100 =</span>
 		<input type="text" class="per_1" pattern="0-9*" placeholder="value">
 		<input type="text" class="per_2" pattern="0-9*" placeholder="percent">
 		<p class="val"></p>
@@ -54,6 +56,17 @@
 		<input type="text" class="per_4" pattern="0-9*" placeholder="신규 매수수량">
 		<p class="val"></p>
 		<p class="total"></p>
+	</div>
+	<div id="sum3">
+		<span title="">적정주가</span>
+		<input type="text" class="price_1" pattern="0-9*" placeholder="1분기 영익">+
+		<input type="text" class="price_2" pattern="0-9*" placeholder="2분기 영익">+
+		<input type="text" class="price_3" pattern="0-9*" placeholder="3분기 영익">+
+		<input type="text" class="price_4" pattern="0-9*" placeholder="4분기 영익">/
+		<input type="text" class="per" pattern="0-9*" size="2" placeholder="퍼" value="10">=
+		<span class="mk_s"></span><br>
+		<input type="text" class="mk_t" pattern="0-9*" placeholder="상장주식수"><br>
+		<div class="mk_p"></div>
 	</div>
 </div>
 
@@ -93,6 +106,18 @@
 			console.log( r, t)
 			$("#sum2 .val").text('총보유수량 : '+r);
 			$("#sum2 .total").text('평단 : '+t);
+		});
+
+		$("#sum3 input").on("keyup",function(){
+			var v1=Number($("#sum3 .price_1").val()),v2=Number($("#sum3 .price_2").val()),v3=Number($("#sum3 .price_3").val()),v4=Number($("#sum3 .price_4").val()),
+				mk_t=Number($("#sum3 .mk_t").val())
+			v=v1 + v2 + v3 + v4;
+			s=v/Number($("#sum3 .per").val());
+			mk_s=Math.ceil(s*10000000000);
+			mk_p=Math.ceil(mk_s/mk_t);
+			console.log( s, mk_s)
+			$("#sum3 .mk_s").text('적정시총 : '+mk_s);
+			$("#sum3 .mk_p").text('적정주가 : '+mk_p);
 		});
 	});
 </script>
