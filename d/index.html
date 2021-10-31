@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<head>
+<title>detect</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=0.5, user-scalable=yes">
+<style>
+	body{color: #000;}
+	button{background-color: transparent;}
+	#header{width: 100%;height: 60px;display: table;position: fixed;z-index: 100;top: 0;left: 0;font-size: 12px;color: #fff;padding-left: 15px;background-color: rgb(47 50 58);}
+	.wrap{padding:80px 20px 20px}
+	.wrap div{ margin: 10px 0;}
+
+
+
+	[data-mode="dark"]	{background-color:rgb(26, 26, 26) !important;border-color:rgb(64, 64, 64) !important;}
+	[data-mode] .btn_dark	{opacity:1;}
+
+	#dark_mode	{display:none;}
+	.btn_dark	{width:25px;height:25px;position:absolute;top:16px;right:20px;padding:0;font-size:0;border-width:0;border-radius:0;outline:0;opacity:0;transition:opacity 0.5s 0.5s;transform:scale(0.7);}
+
+	.btn_dark .scene	{width:25px;height:25px;position:absolute;z-index:2;top:0;left:0;font-size:0;}
+	.btn_dark .sun	{width:25px;height:25px;position:absolute;overflow:hidden;z-index:2;top:0;left:0;font-size:0;background-color:#909090;border-radius:100%;box-shadow:0 0 5px 3px #4c4c4c;transition:0.5s 0.5s;transform:scale(0.9);}
+	.btn_dark.loading .sun	{transition:0s 0s;}
+	.btn_dark.loading .sun:after	{transition:0s 0s;}
+	.btn_dark .sun_bg	{width:100%;height:100%;transition:transform 0.5s 0.5s;transform:scale(1);}
+	.btn_dark.loading  .sun_bg	{-webkit-animation:scale 1s 0.5s linear infinite;animation:scale 1s 0.5s linear 4;}
+	.btn_dark .sun:after	{width:25px;height:25px;position:absolute;top:0;left:0;content:"";background-color:#2e323a;border-radius:25px;transition:0.5s 0.2s;-webkit-transform:scale(0.8) translate(-100%, -100%);-moz-transform:scale(0.8) translate(-100%, -100%);-ms-transform:scale(0.8) translate(-100%, -100%);-o-transform:scale(0.8) translate(-100%, -100%);transform:scale(0.8) translate(-100%, -100%);-webkit-border-radius:25px;-moz-border-radius:25px;}
+	.btn_dark .sun_bg:before	{width:100%;height:100%;position:absolute;top:0;left:0;content:"";background:#8e8e8e;border:0;transform:rotate(45deg);}
+	.btn_dark.loading .sun_bg:before	{content:"";-webkit-animation:sun 4s linear infinite;animation:sun 4s linear 1;}
+	.btn_dark .sun_bg:after	{width:100%;height:100%;position:absolute;top:0;left:0;content:"";background:#8e8e8e;border:0;transform:rotate(0deg);}
+	.btn_dark.loading .sun_bg:after	{content:"";-webkit-animation:sun2 4s linear infinite;animation:sun2 4s linear 1;}
+	[data-mode="dark"] input[type="text"]	{color:#fff;background-color:#565656;border-color:#aaa;box-shadow:0 0 0 0 transparent;transition:0.5s 0s;}
+	[data-mode="dark"] .btn_dark .sun	{background-color:#565656;box-shadow:0 0 0 0 transparent;transition:0.5s 0s;}
+	[data-mode="dark"] .btn_dark .sun:after	{-moz-transform:scale(0.8) translate(-25%, -25%);-ms-transform:scale(0.8) translate(-25%, -25%);-o-transform:scale(0.8) translate(-25%, -25%);transform:scale(0.8) translate(-25%, -25%);}
+	[data-mode="dark"] .btn_dark .sun_bg	{transition:transform 0.5s 0s;transform:scale(0);}
+	[data-mode="dark"] .btn_dark .sun_bg:before,[data-mode="dark"] .btn_dark .sun_bg:after	{transform:scale(0);}
+	[data-mode="dark"] body	{color:#bfbfbf;background-color:#1a1a1a;}
+</style>
+</head>
+<body>
+<div id="header">
+	<h1>DEVICE Detect</h1>
+</div>
+<div class="wrap">
+	<div id="userAgent"></div>
+	<div id="ratio"></div>
+	<div id="browserStatus"></div>
+</div>
+<script type="text/javascript" src="https://image-glb.qpyou.cn/markup/img/common/guide/jquery.min.1.12.0.js"></script>
+<script type="text/javascript">
+	// 상용 https://tinyurl.com/d1t3t
+	(function($el){if($el!=undefined){var $btnDark=document.createElement("button");$btnDark.classList.add("btn_dark");$btnDark.innerHTML='Dark mode<div class="scene"><div class="sun"></div><div class="sun_bg"></div></div>';$el.appendChild($btnDark)}isDarkMode={init:function(){if(localStorage.HiveGuideDarkMode==undefined){if(matchMedia('(prefers-color-scheme: dark)').matches){setMode('dark')}else{setMode('light');setTimeout(function(){$el!=undefined&&document.querySelector(".btn_dark").classList.add("loading")},100);setTimeout(function(){$el!=undefined&&document.querySelector(".btn_dark").classList.remove("loading")},4500)}}else{var a=localStorage.HiveGuideDarkMode;"dark"==a?setMode("dark"):setMode("light")}},reload:function(){localStorage.removeItem("HiveGuideDarkMode");isDarkMode.init()}};isDarkMode.init();function setMode(a){localStorage.setItem('HiveGuideDarkMode',a);document.querySelector("html").setAttribute("data-mode",a);$el!=undefined&&document.querySelector(".btn_dark").classList.remove("loading")}if(window.matchMedia("(prefers-color-scheme: dark)").addEventListener==undefined){window.matchMedia('(prefers-color-scheme: dark)').addListener(function(){isDarkMode.reload()})}else{window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change",function(){isDarkMode.reload()})}$el!=undefined&&document.querySelector(".btn_dark").addEventListener("click",function(){var a=localStorage.HiveGuideDarkMode;"dark"==a?setMode("light"):setMode("dark")})})(document.querySelector("#header"));
+
+	$("#ratio").append('devicePixelRatio : '+window.devicePixelRatio);
+	var html = document.documentElement;
+	function showInfo() {
+		$('#browserStatus').html('Client Size : ' + html.clientWidth + 'x' + html.clientHeight);
+	}
+	$(function() {
+		$('#userAgent').html('userAgent : '+navigator.userAgent);
+		showInfo();
+		$(window).on('orientationchange', showInfo);
+		$(window).on('resize', showInfo);
+	});
+
+</script>
+</body>
+</html>
