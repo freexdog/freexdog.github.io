@@ -1,2 +1,4 @@
-# Browser Dectect.
-Browser Client Size, Device Pixel Ratio, UserAgent.
+# Device Dectect.
+* UserAgent
+* Device(phone) Pixel Ratio
+* Device Client Size 
