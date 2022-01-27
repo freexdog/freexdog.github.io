@@ -1,8 +1,8 @@
 <!DOCTYPE HTML>
 <head>
-<title>detect</title>
+<title>Detect</title>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=0.5, user-scalable=yes">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=yes">
 <style>
 	body{color: #000;}
 	button{background-color: transparent;}
@@ -10,13 +10,11 @@
 	.wrap{padding:80px 20px 20px}
 	.wrap div{ margin: 10px 0;}
 
-
-
 	[data-mode="dark"]	{background-color:rgb(26, 26, 26) !important;border-color:rgb(64, 64, 64) !important;}
 	[data-mode] .btn_dark	{opacity:1;}
 
 	#dark_mode	{display:none;}
-	.btn_dark	{width:25px;height:25px;position:absolute;top:16px;right:40px;padding:0;font-size:0;border-width:0;border-radius:0;outline:0;opacity:0;transition:opacity 0.5s 0.5s;transform:scale(0.7);}
+	.btn_dark	{width:25px;height:25px;position:absolute;top:16px;right:40px;padding:0;font-size:0;border-width:0;border-radius:0;outline:0;opacity:0;transition:opacity 0.5s 0.5s;transform:scale(0.7);cursor: pointer;}
 
 	.btn_dark .scene	{width:25px;height:25px;position:absolute;z-index:2;top:0;left:0;font-size:0;}
 	.btn_dark .sun	{width:25px;height:25px;position:absolute;z-index:2;top:0;left:0;font-size:0;background-color:#909090;border-radius:100%;box-shadow:0 0 5px 3px #4c4c4c;transition:0.5s 0.5s;transform:scale(0.9);}
@@ -46,9 +44,8 @@
 	<div id="ratio"></div>
 	<div id="browserStatus"></div>
 </div>
-<script type="text/javascript" src="https://image-glb.qpyou.cn/markup/img/common/guide/jquery.min.1.12.0.js"></script>
+<script type="text/javascript" src="../per/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
-	// 상용 https://tinyurl.com/d1t3t
 	(function($el){if($el!=undefined){var $btnDark=document.createElement("button");$btnDark.classList.add("btn_dark");$btnDark.innerHTML='Dark mode<div class="scene"><div class="sun"></div><div class="sun_bg"></div></div>';$el.appendChild($btnDark)}isDarkMode={init:function(){if(localStorage.HiveGuideDarkMode==undefined){if(matchMedia('(prefers-color-scheme: dark)').matches){setMode('dark')}else{setMode('light');setTimeout(function(){$el!=undefined&&document.querySelector(".btn_dark").classList.add("loading")},100);setTimeout(function(){$el!=undefined&&document.querySelector(".btn_dark").classList.remove("loading")},4500)}}else{var a=localStorage.HiveGuideDarkMode;"dark"==a?setMode("dark"):setMode("light")}},reload:function(){localStorage.removeItem("HiveGuideDarkMode");isDarkMode.init()}};isDarkMode.init();function setMode(a){localStorage.setItem('HiveGuideDarkMode',a);document.querySelector("html").setAttribute("data-mode",a);$el!=undefined&&document.querySelector(".btn_dark").classList.remove("loading")}if(window.matchMedia("(prefers-color-scheme: dark)").addEventListener==undefined){window.matchMedia('(prefers-color-scheme: dark)').addListener(function(){isDarkMode.reload()})}else{window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change",function(){isDarkMode.reload()})}$el!=undefined&&document.querySelector(".btn_dark").addEventListener("click",function(){var a=localStorage.HiveGuideDarkMode;"dark"==a?setMode("light"):setMode("dark")})})(document.querySelector("#header"));
 
 	$("#ratio").append('devicePixelRatio : '+window.devicePixelRatio);
@@ -62,7 +59,6 @@
 		$(window).on('orientationchange', showInfo);
 		$(window).on('resize', showInfo);
 	});
-
 </script>
 </body>
 </html>
