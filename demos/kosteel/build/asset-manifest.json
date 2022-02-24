@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/demos/kosteel/build/static/css/main.21fb3bee.css",
-    "main.js": "/demos/kosteel/build/static/js/main.5e2169e3.js",
+    "main.js": "/demos/kosteel/build/static/js/main.bdabc4e5.js",
     "static/js/787.745310f3.chunk.js": "/demos/kosteel/build/static/js/787.745310f3.chunk.js",
     "static/media/main_movie_02.mp4": "/demos/kosteel/build/static/media/main_movie_02.447c9fa5fce17d7a4250.mp4",
     "static/media/main_movie_01.mp4": "/demos/kosteel/build/static/media/main_movie_01.094990e4d1df2a65cbd1.mp4",
@@ -83,11 +83,11 @@
     "static/media/thumb_sub_1_4_6_7.jpg": "/demos/kosteel/build/static/media/thumb_sub_1_4_6_7.4e2de4715118115f03e7.jpg",
     "index.html": "/demos/kosteel/build/index.html",
     "main.21fb3bee.css.map": "/demos/kosteel/build/static/css/main.21fb3bee.css.map",
-    "main.5e2169e3.js.map": "/demos/kosteel/build/static/js/main.5e2169e3.js.map",
+    "main.bdabc4e5.js.map": "/demos/kosteel/build/static/js/main.bdabc4e5.js.map",
     "787.745310f3.chunk.js.map": "/demos/kosteel/build/static/js/787.745310f3.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.21fb3bee.css",
-    "static/js/main.5e2169e3.js"
+    "static/js/main.bdabc4e5.js"
   ]
 }
