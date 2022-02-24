@@ -57,6 +57,7 @@
 		<p class="val"></p>
 		<p class="total"></p>
 	</div>
+
 	<div id="sum3">
 		<span title="">적정주가(실험중)</span>
 		<input type="tel" class="price_1" pattern="0-9*" placeholder="1분기 영익">+
@@ -66,6 +67,29 @@
 		<input type="tel" class="per" pattern="0-9*" size="3" placeholder="퍼" value="10">=
 		<span class="mk_s"></span><br>
 		<input type="tel" class="mk_t" pattern="0-9*" placeholder="상장주식수"><br>
+		<div class="mk_p"></div>
+	</div>
+	<div id="sum4">
+		<span title="">적정주가 : EPS*PER</span>
+		<input type="tel" class="price_1" pattern="0-9*" placeholder="EPS">*
+		<input type="tel" class="price_2" pattern="0-9*" placeholder="PER">=
+		<div class="mk_p"></div>
+	</div>
+
+
+	<div id="sum5">
+		<span title="">지주사 적정주가(멀티플)</span>
+		<input type="tel" class="price_1" pattern="0-9*" placeholder="연간 영익(분기영익*4)">*
+		<input type="tel" class="price_4" pattern="0-9*" placeholder="종속회사지분율(0.38)">*
+		<input type="tel" class="per" pattern="0-9*" size="3" placeholder="멀티플(8)" value="8">=
+		<span class="mk_s"></span><br>
+		<input type="tel" class="mk_t" pattern="0-9*" placeholder="상장주식수"><br>
+		<div class="mk_p"></div>
+	</div>
+	<div id="sum6">
+		<span title="">적정주가 : EPS*PER</span>
+		<input type="tel" class="price_1" pattern="0-9*" placeholder="EPS">*
+		<input type="tel" class="price_2" pattern="0-9*" placeholder="PER">=
 		<div class="mk_p"></div>
 	</div>
 </div>
@@ -97,7 +121,6 @@
 			$("#sum .val").text('총보유수량 : '+r);
 			$("#sum .total").text('평단 : '+t);
 		});
-
 		$("#sum2 input").on("keyup",function(){
 			var v1=Number($("#sum2 .per_1").val()),v2=Number($("#sum2 .per_2").val()),v3=Number($("#sum2 .per_3").val()),v4=Number($("#sum2 .per_4").val()),
 				r=v2 + v4;
@@ -158,6 +181,21 @@
 			$mk_t.val($mk_t.val().replace(/(,|\s|\t)/g, ""))
 			$("#sum3 .mk_s").text('적정시총 : '+mk_s.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+' ('+numberToKorean(mk_s)+')');
 			$("#sum3 .mk_p").text('적정주가 : '+mk_p.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","));
+		});
+
+		$("#sum4 input").on("keyup",function(){
+			var $mk_p=$("#sum4 .mk_p"),
+				$inp1=$("#sum4 .price_1"),
+				$inp2=$("#sum4 .price_2");
+			v1=Number($inp1.val().replace(/(,|\s|\t)/g, ""));
+			v2=Number($inp2.val().replace(/(,|\s|\t)/g, ""));;
+			var v=Math.round(v1 * v2);
+			numberToKorean(v);
+
+			// 인풋 오타 수정
+			$inp1.val($inp1.val().replace(/(,|\s|\t)/g, ""));
+			$inp2.val($inp2.val().replace(/(,|\s|\t)/g, ""));
+			$("#sum4 .mk_p").text('적정주가 : '+v.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","));
 		});
 	});
 </script>

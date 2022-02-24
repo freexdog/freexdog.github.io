@@ -1,13 +1,15 @@
 {
   "files": {
-    "main.css": "./static/css/main.6dd29336.css",
-    "main.js": "./static/js/main.c8036ac5.js",
+    "main.css": "./static/css/main.4fe91780.css",
+    "main.js": "./static/js/main.3c8a2ff9.js",
     "static/js/787.745310f3.chunk.js": "./static/js/787.745310f3.chunk.js",
     "static/media/main_movie_02.mp4": "./static/media/main_movie_02.447c9fa5fce17d7a4250.mp4",
     "static/media/main_movie_01.mp4": "./static/media/main_movie_01.094990e4d1df2a65cbd1.mp4",
+    "static/media/history.mp4": "./static/media/history.f384bb0e02aa5a5d50f5.mp4",
     "static/media/img_sub_4_2_1.jpg": "./static/media/img_sub_4_2_1.1a8001b8486e28d90b9a.jpg",
     "static/media/mo_main_movie_02.mp4": "./static/media/mo_main_movie_02.539387e569c501f3945d.mp4",
     "static/media/mo_main_movie_01.mp4": "./static/media/mo_main_movie_01.557f27d193e50a75cd58.mp4",
+    "static/media/mo_intro.mp4": "./static/media/mo_intro.85b4a6eca0c9e97e3d39.mp4",
     "static/media/noto-sans-kr-v13-latin_korean-900.eot": "./static/media/noto-sans-kr-v13-latin_korean-900.a6944bb3ff67f6167735.eot",
     "static/media/noto-sans-kr-v13-latin_korean-700.eot": "./static/media/noto-sans-kr-v13-latin_korean-700.03c57c327703281ddf26.eot",
     "static/media/noto-sans-kr-v13-latin_korean-400.eot": "./static/media/noto-sans-kr-v13-latin_korean-400.caafc8d1f79fb1301b5d.eot",
@@ -22,6 +24,7 @@
     "static/media/img_main_1_2.jpg": "./static/media/img_main_1_2.89bc93dc97414351df3e.jpg",
     "static/media/img_sub_1_3_3.jpg": "./static/media/img_sub_1_3_3.125387ae17c0851842ec.jpg",
     "static/media/img_main_1_4.jpg": "./static/media/img_main_1_4.d180a6e0f0ad239b2901.jpg",
+    "static/media/sub_1_1.jpg": "./static/media/sub_1_1.af2adc79d8e69c9c0a3e.jpg",
     "static/media/img_main_1_5.jpg": "./static/media/img_main_1_5.3ee299ab6fd2c1f18177.jpg",
     "static/media/bg_main_3.jpg": "./static/media/bg_main_3.4b1d06778d5f300cd8b1.jpg",
     "static/media/img_main_1_1_1.jpg": "./static/media/img_main_1_1_1.54157634e54b236d733c.jpg",
@@ -79,12 +82,12 @@
     "static/media/thumb_sub_1_4_6_6.jpg": "./static/media/thumb_sub_1_4_6_6.4d270f0403052cc44ca9.jpg",
     "static/media/thumb_sub_1_4_6_7.jpg": "./static/media/thumb_sub_1_4_6_7.4e2de4715118115f03e7.jpg",
     "index.html": "./index.html",
-    "main.6dd29336.css.map": "./static/css/main.6dd29336.css.map",
-    "main.c8036ac5.js.map": "./static/js/main.c8036ac5.js.map",
+    "main.4fe91780.css.map": "./static/css/main.4fe91780.css.map",
+    "main.3c8a2ff9.js.map": "./static/js/main.3c8a2ff9.js.map",
     "787.745310f3.chunk.js.map": "./static/js/787.745310f3.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.6dd29336.css",
-    "static/js/main.c8036ac5.js"
+    "static/css/main.4fe91780.css",
+    "static/js/main.3c8a2ff9.js"
   ]
 }
